@@ -9,7 +9,7 @@ public class MainController {
 		
 	@RequestMapping("/") 
 	public String mainView(Model model) {
-		System.out.println("-----------------스프링부트 시작------------");
+		System.out.println("-----------------스프링부트 시작11------------");
 		model.addAttribute("data","123");
 			return "test";
 	}
