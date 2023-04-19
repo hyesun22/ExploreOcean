@@ -6,5 +6,11 @@
 </head>
 <body>
 	<p><span th:text="${data}"></span>Hi ii</p>
+	<table>
+	<tr th:each="data2 : ${test}">
+		<td th:text="${data2.id}"></td>
+		<td th:text="${data2.test}"></td>
+	</tr>
+	</table>
 </body>
 </html>
