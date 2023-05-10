@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org"> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>haeAreum</title>
+</head>
+<style>
+	.map {
+		height: 1000px;
+		width: 100%;
+	}
+</style>
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/build/ol.js"></script>
+<body>
+<div id="map" class="map">
+<button type="button" onclick="moveHae();">해아름 맵으로 이동</button>
+</div>
+<script type="text/javascript">
+	var baseMapLayer = new ol.layer.Tile({
+		title : "OSM",
+		lonLatLayer : true,
+		visible : true,
+		source : new ol.source.OSM()
+	});
+	
+	var baseMapUrl = 'http://10.2.10.49:50080/tiles/{mapType}/{z}/{x}/{y}.png';
+	
+	var testMapLayer = new ol.layer.Tile({
+		visible: true,
+		role: 'base_map_layer',
+		source: new ol.source.XYZ({ 
+		tileUrlFunction: baseMapTileUrlFunction, 
+			crossOrigin: 'anonymous' 
+		})
+	});
+	
+	map = new ol.Map({
+		target: 'map',
+		layers: [new ol.layer.Group({	
+			title: 'base_layer_group',
+			openInLayerSwitcher: true,
+			displayInLayerSwitcher: true,
+			layers: [baseMapLayer, testMapLayer]
+		})],
+		view: new ol.View({
+			projection: 'EPSG:3857',
+			center: ol.proj.transform([128.555209, 37.901446], 'EPSG:4326', 'EPSG:3857'),
+			zoom: 6,
+			minZoom: 1,
+			extent: ol.proj.transformExtent([0, -60, 360, 60], 'EPSG:4326', 'EPSG:3857')
+		}),
+		controls: [],
+		interactions: ol.interaction.defaults({altShiftDragRotate:false, pinchRotate:false})
+	});
+	
+	function baseMapTileUrlFunction(tileCoord, pixelRatio, projection) {
+
+		let x = tileCoord[1];
+		let y = tileCoord[2];
+		let z = tileCoord[0];
+
+		if (z < 5 || z > 16) {
+			return false;
+		}
+
+		z = "L" + z.toString().padStart(2, '0');
+
+		return baseMapUrl.replace(/{mapType}/, 'DL_USR3857').replace(/{z}/, z).replace(/{x}/, x).replace(/{y}/, y);
+	}
+</script>
+</body>
+</html>

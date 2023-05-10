@@ -1,14 +1,9 @@
 package com.koast.exploreOcean.controller;
 
-
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.koast.exploreOcean.model.Test;
 import com.koast.exploreOcean.service.TestService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,6 +23,13 @@ public class MainController {
 		    System.out.println(list);
 			model.addAttribute("test", list);
 			return "index";
+	}
+	
+	@RequestMapping("/hae") 
+	public String haeAreumView(Model model, HttpServletRequest request) throws Exception {
+		System.out.println("-----------------해아름 맵 시작------------");
+			
+			return "haeAreum";
 	}
 
 }	
