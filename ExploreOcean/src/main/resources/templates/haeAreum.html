@@ -11,14 +11,15 @@
 	.map {
 		height:1000px;
 		width:100%;
+ 		position: relative;
+ 		z-index: 2;
 	}
 	.log {
 	  text-decoration: none;
 	}
 	.color {
-		height: 50px;
+		height: 5%;
 		background-color: rgb(76, 146, 253);
-		line-height: 50px;
 	}
 	.menulist{
 		overflow: hidden;
@@ -26,17 +27,41 @@
 	}	
 	.menulist .left {
 		float:right;
-		padding: 0 20px;
-		font-size: 22px;
+		padding: 0.7% 1%;
+		font-size: 100%;
         font-weight: bold;
-	}		
+	}	
+	
+	.menulist .left2 {
+		float:right;
+		padding: 0.7% 3% 0.7% 1%;
+		font-size: 100%;
+        font-weight: bold;
+	}	
 	.menulist .right {
 		float: left;
-		padding: 0 20px;
-		font-size: 22px;
+		padding: 0.5% 3%;
+		font-size: 150%;
         font-weight: bold;
         color:white;
 	}
+	
+	.color2 {
+		list-style-type: none;
+		background-color: rgb(76, 146, 253);
+		position: absolute;
+		margin: auto;
+  		width: 3%;
+  		height: 100%;
+  		overflow: auto;	
+  		z-index: 1;
+	}		
+	
+	.color2 .test {
+		color: white;
+		padding: 40%;
+	}
+	
 	a {
 		text-decoration:none;
 	}
@@ -45,19 +70,27 @@
 <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/build/ol.js"></script>
 <body>
 <div id="map" class="map">
-	<div class="color">
-		<!-- <div class="logo">
+	 	<div class="color">
+<!-- 		<div class="logo">
 			<a href="#"></a>
 		</div> -->
-
 		<ul class="menulist">
-		<li class=right>미측구역관리 시스템</li>
-		<li class=left>로그아웃</li>
-		<li class=left><a href="#">도움말</a></li>
-		<li class=left>홍길동 님</li>
+			<li class=right>미측구역관리 시스템</li>
+			<li class=left2>로그아웃</li>
+			<li class=left><a href="#">도움말</a></li>
+			<li class=left>홍길동 님</li>
 		</ul>
+		</div>
+		
+	<div class="color2">
+	<ul class="menulist2">
+		<li class=test><a href="#">메뉴1</a></li>
+		<li class=test><a href="#">메뉴2</a></li>
+	</ul>
 	</div>
-</div>	
+</div>		
+
+
 <script type="text/javascript">
 	var baseMapLayer = new ol.layer.Tile({
 		title : "OSM",
